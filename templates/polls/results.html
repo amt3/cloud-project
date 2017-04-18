@@ -1,0 +1,20 @@
+<table>
+	<tr align  = Left>
+		<th width = 100%>{% load static %}<img src = "{% static 'polls/images/Mychoice1.png' %}" style="width:500px;height:80px;"></th>
+		<th><font color = orangered><a href="/polls/{{user_email}}"><h4>Home</h4></a>
+		<th><font color = orangered><a href = "/polls"><h4>Logout</h4></a>
+	</tr>
+</table>
+
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}" />
+<marquee scrollamount = 10 height = 50 direction = right><h2>{{ question.question_text }}</h1></marquee>
+<br>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }} <i><B> is at </i></B> {{ choice.votes }} vote{{ choice.votes|pluralize }} <hr Size = 10 width = {{choice.votes}} align = left style = "border : 5px solid green"> </li>
+ 
+{% endfor %}
+</ul>
+
+<a href="{% url 'polls:detail' user_email question.id %} ">Vote again?</a>
+
